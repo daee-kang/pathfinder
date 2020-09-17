@@ -1,6 +1,6 @@
 import React, { useContext, useState, useRef } from 'react'
 import { Context } from '../Provider'
-import { BOARD, INITIAL_COLOR, PATH_COLOR, START_COLOR, TARGET_COLOR } from '../constants'
+import { BOARD, INITIAL_COLOR, WALL_COLOR, PATH_COLOR, START_COLOR, TARGET_COLOR } from '../constants'
 import Square from './Square'
 
 const Board = () => {
@@ -48,7 +48,7 @@ const Board = () => {
         if(ridx === undefined) return
         if(cidx === undefined) return
 
-        updateSquare(Number(ridx), Number(cidx), PATH_COLOR)
+        updateSquare(Number(ridx), Number(cidx), WALL_COLOR)
     }
 
     const moveColor = (e) => {

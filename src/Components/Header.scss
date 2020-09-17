@@ -1,0 +1,28 @@
+$menu-items: 5;
+$width: (100/$menu-items) * 1%;
+
+.header {
+  text-align: center;
+}
+
+.algo-picker {
+  list-style: none;
+  margin: 50px auto;
+  max-width: 720px;
+  padding: 0;
+}
+
+.algo-item {
+  background: #fff;
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.selected {
+}

@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react"
 import './App.css';
-import Board from './Components/Board';
+import Main from './Components/Main';
 
 import { Provider } from './Provider'
 
 function App() {
   return (
     <Provider>
-      <Board />
+      <Main />
     </Provider>
 
   );
