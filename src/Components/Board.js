@@ -1,27 +1,40 @@
 import React, { useContext, useState, useRef } from 'react'
 import { Context } from '../Provider'
-import { BOARD, INITIAL_COLOR, PATH_COLOR } from '../constants'
+import { BOARD, INITIAL_COLOR, PATH_COLOR, START_COLOR, TARGET_COLOR } from '../constants'
 import Square from './Square'
 
 const Board = () => {
     const context = useContext(Context)
-    const { updateSquare } = context
+    const { updateSquare, dragSquare, begin, end } = context
 
     //states
     const [clicking, setClicking] = useState(false)
+    const [dragging, setDragging] = useState(false)
+    const [dragState, setDragState] = useState()
 
     const onMouseDown = (e) => {
-        setClicking(true)
+        if(e.target.dataset.state == START_COLOR || e.target.dataset.state == TARGET_COLOR) {
+            setDragState(e.target.dataset.state)
+            setDragging(true)
+        } else {
+            console.log("clicking")
+            setClicking(true)
+        }
     }
 
     const onMouseUp = (e) => {
+        setDragging(false)
         setClicking(false)
     }
 
     const onMouseMove = (e) => {
-        if(!clicking) return
-
-        changeColor(e)
+        if(clicking) {
+            console.log("clicking")
+            changeColor(e)
+        } else if (dragging) {
+            console.log("dragging")
+            moveColor(e)
+        }
     }
 
     const onClick = (e) => {
@@ -29,13 +42,23 @@ const Board = () => {
     }
 
     const changeColor = (e) => {
-        if(e.target.dataset.ridx == undefined) return
-        if(e.target.dataset.cidx == undefined) return
+        let ridx = e.target.dataset.ridx
+        let cidx = e.target.dataset.cidx
+        
+        if(ridx === undefined) return
+        if(cidx === undefined) return
 
-        const ridx = Number(e.target.dataset.ridx)
-        const cidx = Number(e.target.dataset.cidx)
+        updateSquare(Number(ridx), Number(cidx), PATH_COLOR)
+    }
 
-        updateSquare(ridx, cidx, PATH_COLOR)
+    const moveColor = (e) => {
+        let ridx = e.target.dataset.ridx
+        let cidx = e.target.dataset.cidx
+        
+        if(ridx === undefined) return
+        if(cidx === undefined) return
+
+        dragSquare(Number(ridx), Number(cidx), dragState)
     }
 
     return (
@@ -51,7 +74,6 @@ const Board = () => {
                     {row.map((col, j) => (
                         <Square ridx={i} cidx={j} key={i + " " + j}/>
                     ))}
-                    <br />
                 </div>
             ))}
         </div>

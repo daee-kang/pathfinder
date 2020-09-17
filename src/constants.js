@@ -3,6 +3,8 @@ export const INITIAL_COLOR  = "gray"
 export const VISITED_COLOR  = "green"
 export const PATH_COLOR     = "blue"
 export const WALL_COLOR     = "green"
+export const TARGET_COLOR   = "red"
+export const START_COLOR    = "yellow"
 
 //board
 export const BOARD = []

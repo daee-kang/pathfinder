@@ -1,5 +1,5 @@
 import React , { createContext, useState, useRef } from 'react'
-import { BOARD, INITIAL_COLOR } from "./constants"
+import { BOARD, INITIAL_COLOR, START_COLOR, TARGET_COLOR } from "./constants"
 
 const Context = createContext();
 
@@ -25,6 +25,30 @@ const Provider = ({children}) => {
         setCurrState(toState)
     }
 
+    const dragSquare = (ridx, cidx, toState) => {
+        console.log(toState)
+
+        if( toState == START_COLOR ) {
+            if( ridx == begin.current.x && cidx == begin.current.y ) return
+            let prex = begin.current.x
+            let prey = begin.current.y
+
+            begin.current = {x: ridx, y: cidx}
+
+            updateSquare(prex, prey)
+            updateSquare(begin.current.x, begin.current.y, START_COLOR)
+        } else if( toState == TARGET_COLOR ) {
+            if( ridx == end.current.x && cidx == end.current.y ) return
+            let prex = end.current.x
+            let prey = end.current.y
+
+            end.current = {x: ridx, y: cidx}
+
+            updateSquare(prex, prey)
+            updateSquare(end.current.x, end.current.y, TARGET_COLOR)
+        }
+    }
+
     return (
         <Context.Provider value = {{
             //states
@@ -35,6 +59,7 @@ const Provider = ({children}) => {
             setIsPathExist,
             setIsVisualized,
             updateSquare,
+            dragSquare,
 
             //ref
             setCurrStateCache,

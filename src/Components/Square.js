@@ -6,7 +6,9 @@ import {
     INITIAL_COLOR,
     VISITED_COLOR,
     PATH_COLOR,
-    WALL_COLOR
+    WALL_COLOR,
+    TARGET_COLOR,
+    START_COLOR
 } from '../constants'
 
 const Square = ({ridx, cidx}) => {
@@ -16,13 +18,19 @@ const Square = ({ridx, cidx}) => {
     //we use ridx + cidx as a key, this is in board.js as well
     setCurrStateCache.current[ridx + " " + cidx] = setCurrState
 
+    //onload
+    useEffect(() => {
+        if( ridx == begin.current.x && cidx == begin.current.y ) {
+            setCurrState(START_COLOR)
+        } else if ( ridx == end.current.x && cidx == end.current.y) {
+            setCurrState(TARGET_COLOR)
+        }
+    })
+
     useEffect(() => {
 
     }, [currState])
 
-    const getColor = () => {
-        return currState
-    }
 
     return (
         <div 
@@ -31,7 +39,7 @@ const Square = ({ridx, cidx}) => {
             data-ridx={ridx}
             data-cidx={cidx}
             style={{
-                backgroundColor: getColor()
+                backgroundColor: currState
             }}
         />
     )
