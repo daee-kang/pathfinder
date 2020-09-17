@@ -16,13 +16,22 @@ const Provider = ({children}) => {
     const board = useRef(BOARD)
     const begin = useRef({x: 1, y: 1})
     const end   = useRef({x: 5, y: 9})
+    const pathFinder = useRef()
 
     //methods
-    const updateSquare = (ridx, cidx, toState = INITIAL_COLOR) => {
+    const updateSquare = (ridx, cidx, toState = INITIAL_COLOR, delay) => {
         board.current[ridx][cidx] = toState
         const setCurrState = setCurrStateCache.current[ridx + " " + cidx]
 
-        setCurrState(toState)
+        if(delay) {
+            console.log('here')
+            console.log(delay)
+            setTimeout(() => {
+                setCurrState(toState)
+            }, delay)
+        } else {
+            setCurrState(toState)
+        }
     }
 
     const dragSquare = (ridx, cidx, toState) => {
@@ -65,7 +74,8 @@ const Provider = ({children}) => {
             setCurrStateCache,
             board,
             begin,
-            end
+            end,
+            pathFinder
         }}
         >
             {children}

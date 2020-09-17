@@ -1,7 +1,9 @@
 import React, { useContext } from 'react'
 import { Context } from '../Provider'
+import PathFinder from '../Algorithms/pathFinder'
 
 import './Header.scss'
+import Dijkstra from '../Algorithms/dijkstra'
 
 const Header = () => {
     const context = useContext(Context)
@@ -13,7 +15,8 @@ const Header = () => {
         isVisualized,
         setIsPathExist,
         setIsVisualized,
-        board
+        board,
+        pathFinder
     } = context;
 
     const search = () => {
@@ -21,7 +24,9 @@ const Header = () => {
 
         setIsVisualized(true)
 
-        
+        pathFinder.current = new Dijkstra(begin.current, end.current, updateSquare, board.current)
+        pathFinder.current.execute()
+        pathFinder.current.drawShortestPath()
     }
 
     
