@@ -58,6 +58,17 @@ const Provider = ({children}) => {
         }
     }
 
+    const clearBoard = () => {
+        console.log("clearing board")
+
+        for(let i = 0; i < 10; i++){
+            for(let j = 0; j < 10; j++) {
+                updateSquare(i, j)
+            }
+        }
+        setIsVisualized(false)
+    }
+
     return (
         <Context.Provider value = {{
             //states
@@ -69,6 +80,7 @@ const Provider = ({children}) => {
             setIsVisualized,
             updateSquare,
             dragSquare,
+            clearBoard,
 
             //ref
             setCurrStateCache,

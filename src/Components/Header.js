@@ -11,6 +11,7 @@ const Header = () => {
         begin,
         end,
         updateSquare,
+        clearBoard,
         isPathExist,
         isVisualized,
         setIsPathExist,
@@ -26,7 +27,6 @@ const Header = () => {
 
         pathFinder.current = new Dijkstra(begin.current, end.current, updateSquare, board.current)
         pathFinder.current.execute()
-        pathFinder.current.drawShortestPath()
     }
 
     
@@ -41,6 +41,7 @@ const Header = () => {
             </ul>
 
             <button onClick={search}>search</button>
+            <button onClick={clearBoard}>clear</button>
         </div>
     )
 }

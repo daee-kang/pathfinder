@@ -32,14 +32,18 @@ export default class Dijkstra extends PathFinder {
                     if(this.board[newx][newy] == WALL_COLOR) continue
 
                     //dijkstra stuff here
-                    const tempDistance = this.dist[v.x][v.y] + 1; //important to know all distance is 1
-                    if(tempDistance < this.dist[newx][newy]) {
-                        this.dist[newx][newy] = tempDistance
-                        this.prev[newx][newy] = {x: v.x, y: v.y}
-                    }
+                    if(this.dist[v.x][v.y] == Infinity || 
+                        this.dist[v.x][v.y] + 1 >= this.dist[newx][newy]) continue;
 
+                    this.dist[newx][newy] = this.dist[v.x][v.y] + 1;
+                    this.prev[newx][newy] = {x: v.x, y: v.y}
+
+                    //we found 
                     if(newx == this.end.x && newy == this.end.y) {
-                        this.prev[newx][newy] = {x: v.x, y: v.y}
+                        setTimeout(() => {
+                            console.log("shitter")
+                            this.drawShortestPath()
+                        }, timeout)
                         return
                     }
                     this.updateSquare(newx, newy, VISITED_COLOR, timeout)
@@ -50,6 +54,7 @@ export default class Dijkstra extends PathFinder {
 
             q1 = q2
             q2 = []
+
         }
     }
 }

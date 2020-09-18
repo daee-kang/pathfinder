@@ -8,11 +8,12 @@ export default class PathFinder {
         this.updateSquare = updateSquare
         this.board = board;
 
+
         console.log(this)
 
         //initialize dist and prev graphs
-        this.dist = new Array(10)
-        this.prev = new Array(10)
+        this.dist = []
+        this.prev = []
         for(let i = 0; i < 10; i++) {
             this.dist[i] = []
             this.prev[i] = []
@@ -21,26 +22,35 @@ export default class PathFinder {
                 this.dist[i][j] = Infinity
                 this.prev[i][j] = {x: -1, y: -1}
             }
-            //this.dist[this.begin.x][this.begin.y] = 0;
         }
+        this.dist[this.begin.x][this.begin.y] = 0;
     }
 
     drawShortestPath = () => {
+        console.log(this.prev)
         let path = []
 
+        let timeout = 0
+
         let v = {x: this.end.x, y: this.end.y}
-        while(v.x != this.begin.x && v.y != this.begin.y){
-            v = this.prev[v.x][v.y]
-            path.push(v)
-        }
+        
+        while(this.prev[v.x][v.y].x != -1 && this.prev[v.x][v.y].y != -1){
+            path.push({x: v.x, y: v.y})
+            let tempx = v.x
+            let tempy = v.y
+            v = {x: this.prev[tempx][tempy].x, y: this.prev[tempx][tempy].y}
+        } 
+        path.push({x: this.begin.x, y: this.begin.y})
 
         path.reverse()
 
-        let timeout = 100
-        for(let i = 0; i < path.size(); i++){
+        for(let i = 0; i < path.length; i++){
             this.updateSquare(path[i].x, path[i].y, PATH_COLOR, timeout)
             timeout += 100
         } 
+
+        console.log(path)
+        console.log(this.prev)
     }
 
     //use these for traversing neighbors in algos
