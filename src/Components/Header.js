@@ -29,6 +29,12 @@ const Header = () => {
         pathFinder.current.execute()
     }
 
+    const drawMaze = () => {
+        if(isVisualized) return
+
+        PathFinder.drawMaze(begin.current.x, begin.current.y, updateSquare)
+    }
+
     
     return (
         <div className="header">
@@ -42,6 +48,7 @@ const Header = () => {
 
             <button onClick={search}>search</button>
             <button onClick={clearBoard}>clear</button>
+            <button onClick={drawMaze}>draw maze</button>
         </div>
     )
 }

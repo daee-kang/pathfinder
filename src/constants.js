@@ -1,10 +1,10 @@
 //colors for board
-export const INITIAL_COLOR  = "#D3D3D3"
-export const VISITED_COLOR  = "#89cff0"
-export const PATH_COLOR     = "blue"
-export const WALL_COLOR     = "black"
+export const INITIAL_COLOR  = "#f6f6f6"
+export const VISITED_COLOR  = "#ffe2e2"
+export const PATH_COLOR     = "#90ee90"
+export const WALL_COLOR     = "#838383"
 export const TARGET_COLOR   = "#ff6961"
-export const START_COLOR    = "#FDFD96"
+export const START_COLOR    = "#1aa6b7"
 
 //board
 export const BOARD = []
