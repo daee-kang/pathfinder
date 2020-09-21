@@ -9,6 +9,7 @@ const Board = () => {
     const context = useContext(Context)
     const { updateSquare, dragSquare, setIsVisualized, begin, end } = context
 
+    
     //states
     const [clicking, setClicking] = useState(false)
     const [dragging, setDragging] = useState(false)
@@ -21,7 +22,6 @@ const Board = () => {
             setDragState(e.target.dataset.state)
             setDragging(true)
         } else {
-            console.log("clicking")
             setClicking(true)
         }
     }
@@ -33,10 +33,8 @@ const Board = () => {
 
     const onMouseMove = (e) => {
         if(clicking) {
-            console.log("clicking")
             changeColor(e)
         } else if (dragging) {
-            console.log("dragging")
             moveColor(e)
         }
     }
@@ -44,7 +42,23 @@ const Board = () => {
     const onClick = (e) => {
         if(setIsVisualized == true) return
 
-        changeColor(e)
+        toggleColor(e)
+    }
+
+    const toggleColor = (e) => {
+        let ridx = e.target.dataset.ridx
+        let cidx = e.target.dataset.cidx
+        
+        if(ridx === undefined) return
+        if(cidx === undefined) return
+
+        let state = BOARD[ridx][cidx]
+        console.log(state)
+        if(state == WALL_COLOR) {
+            updateSquare(Number(ridx), Number(cidx))
+        } else if (state == INITIAL_COLOR) {
+            updateSquare(Number(ridx), Number(cidx), WALL_COLOR)
+        }
     }
 
     const changeColor = (e) => {

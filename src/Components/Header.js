@@ -27,6 +27,9 @@ const Header = () => {
 
         pathFinder.current = new Dijkstra(begin.current, end.current, updateSquare, board.current)
         pathFinder.current.execute()
+        console.log('SAY HI TO MY MOM')
+
+        setIsVisualized(false)
     }
 
     const drawMaze = () => {
@@ -38,17 +41,18 @@ const Header = () => {
     
     return (
         <div className="header">
-            <ul className="algo-picker">
-                <li className="algo-item">fdsa</li>
-                <li className="algo-item">fdaeg</li>
-                <li className="algo-item">bzb</li>
-                <li className="algo-item">geageh</li>
-                <li className="algo-item">nsgdsg</li>
-            </ul>
-
-            <button onClick={search}>search</button>
-            <button onClick={clearBoard}>clear</button>
-            <button onClick={drawMaze}>draw maze</button>
+            <h1 className="title">path finder</h1>
+            <h2 className="subtitle">by daee kang</h2>
+            <div>
+                <select name="algos">
+                    <option value="dijkstra">dijkstra's</option>
+                    <option value="dijkstra">a*</option>
+                    <option value="dijkstra">pee poo</option>
+                </select>
+                <button onClick={search}>search</button>
+                <button onClick={clearBoard}>clear</button>
+                <button onClick={drawMaze}>draw maze</button>
+            </div>
         </div>
     )
 }

@@ -15,9 +15,6 @@ export const TIMEOUT = 50
 for (let i = 0; i < COL; i++) {
     BOARD[i] = [];
     for(let j = 0; j < ROW; j++) {
-        BOARD[i][j] = {
-            color: INITIAL_COLOR,
-            visit: false
-        }
+        BOARD[i][j] = INITIAL_COLOR
     }
 }

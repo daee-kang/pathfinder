@@ -41,7 +41,6 @@ export default class Dijkstra extends PathFinder {
                     //we found 
                     if(newx == this.end.x && newy == this.end.y) {
                         setTimeout(() => {
-                            console.log("shitter")
                             this.drawShortestPath()
                         }, timeout)
                         return
@@ -54,7 +53,6 @@ export default class Dijkstra extends PathFinder {
 
             q1 = q2
             q2 = []
-
         }
     }
 }

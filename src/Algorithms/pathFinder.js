@@ -8,9 +8,6 @@ export default class PathFinder {
         this.updateSquare = updateSquare
         this.board = board;
 
-
-        console.log(this)
-
         //initialize dist and prev graphs
         this.dist = []
         this.prev = []
@@ -27,7 +24,6 @@ export default class PathFinder {
     }
 
     drawShortestPath = () => {
-        console.log(this.prev)
         let path = []
 
         let timeout = 0
@@ -47,7 +43,7 @@ export default class PathFinder {
         for(let i = 0; i < path.length; i++){
             this.updateSquare(path[i].x, path[i].y, PATH_COLOR, timeout)
             timeout += TIMEOUT
-        } 
+        }
     }
 
 
