@@ -27,11 +27,6 @@ const Square = ({ridx, cidx}) => {
         }
     })
 
-    useEffect(() => {
-
-    }, [currState])
-
-
     return (
         <div 
             className="square" 

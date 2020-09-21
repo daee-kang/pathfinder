@@ -1,9 +1,14 @@
 .square {
-    width: 40px;
-    height: 40px;
-    margin: 3px;
-    border-radius: 3px;
+    width: 30px;
+    height: 30px;
+    margin: 1px;
+    border-radius: 2px;
     cursor: pointer;
     display: inline-block;
     transition: background-color 0.2s ease-out;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
 }

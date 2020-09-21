@@ -1,4 +1,4 @@
-import { VISITED_COLOR, WALL_COLOR } from "../constants";
+import { COL, ROW, TIMEOUT, VISITED_COLOR, WALL_COLOR } from "../constants";
 import PathFinder from "./pathFinder";
 
 export default class Dijkstra extends PathFinder {
@@ -7,7 +7,7 @@ export default class Dijkstra extends PathFinder {
     }
 
     execute = () => {
-        let timeout = 100;
+        let timeout = TIMEOUT;
         let found = false
 
         //using poor mans queue here :-p
@@ -25,7 +25,7 @@ export default class Dijkstra extends PathFinder {
                     let newy = v.y + PathFinder.yNext[i]
 
                     //boundary check
-                    if(newx < 0 || newx >= 10 || newy < 0 || newy >= 10) continue
+                    if(newx < 0 || newx >= ROW || newy < 0 || newy >= COL) continue
                     //skip if already checked
                     if(this.board[newx][newy] == VISITED_COLOR) continue
                     //skip if wall here
@@ -50,7 +50,7 @@ export default class Dijkstra extends PathFinder {
                     q2.push({x: newx, y: newy})
                 }
             }
-            timeout += 100
+            timeout += TIMEOUT
 
             q1 = q2
             q2 = []

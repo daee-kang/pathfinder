@@ -1,5 +1,5 @@
 import React , { createContext, useState, useRef } from 'react'
-import { BOARD, INITIAL_COLOR, START_COLOR, TARGET_COLOR } from "./constants"
+import { BOARD, COL, INITIAL_COLOR, ROW, START_COLOR, TARGET_COLOR } from "./constants"
 
 const Context = createContext();
 
@@ -61,8 +61,8 @@ const Provider = ({children}) => {
     const clearBoard = () => {
         console.log("clearing board")
 
-        for(let i = 0; i < 10; i++){
-            for(let j = 0; j < 10; j++) {
+        for(let i = 0; i < COL; i++){
+            for(let j = 0; j < ROW; j++) {
                 updateSquare(i, j)
             }
         }

@@ -1,4 +1,4 @@
-import { PATH_COLOR } from "../constants";
+import { COL, PATH_COLOR, ROW, TIMEOUT } from "../constants";
 
 export default class PathFinder {
 
@@ -14,11 +14,11 @@ export default class PathFinder {
         //initialize dist and prev graphs
         this.dist = []
         this.prev = []
-        for(let i = 0; i < 10; i++) {
+        for(let i = 0; i < COL; i++) {
             this.dist[i] = []
             this.prev[i] = []
 
-            for(let j = 0; j < 10; j++){
+            for(let j = 0; j < ROW; j++){
                 this.dist[i][j] = Infinity
                 this.prev[i][j] = {x: -1, y: -1}
             }
@@ -46,7 +46,7 @@ export default class PathFinder {
 
         for(let i = 0; i < path.length; i++){
             this.updateSquare(path[i].x, path[i].y, PATH_COLOR, timeout)
-            timeout += 100
+            timeout += TIMEOUT
         } 
 
         console.log(path)

@@ -8,10 +8,13 @@ export const START_COLOR    = "#FDFD96"
 
 //board
 export const BOARD = []
+export const COL = 20
+export const ROW = 20
+export const TIMEOUT = 50
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < COL; i++) {
     BOARD[i] = [];
-    for(let j = 0; j < 10; j++) {
+    for(let j = 0; j < ROW; j++) {
         BOARD[i][j] = {
             color: INITIAL_COLOR,
             visit: false
