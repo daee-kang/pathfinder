@@ -20,6 +20,7 @@ const Provider = ({children}) => {
 
     //methods
     const updateSquare = (ridx, cidx, toState = INITIAL_COLOR, delay) => {
+        console.log(toState)
         board.current[ridx][cidx] = toState
         const setCurrState = setCurrStateCache.current[ridx + " " + cidx]
 

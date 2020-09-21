@@ -9,6 +9,7 @@ const Board = () => {
     const context = useContext(Context)
     const { updateSquare, dragSquare, setIsVisualized, begin, end } = context
 
+    let cache = {}
     
     //states
     const [clicking, setClicking] = useState(false)
@@ -27,6 +28,8 @@ const Board = () => {
     }
 
     const onMouseUp = (e) => {
+        cache = {}
+
         setDragging(false)
         setClicking(false)
     }
@@ -68,7 +71,11 @@ const Board = () => {
         if(ridx === undefined) return
         if(cidx === undefined) return
 
+        if(cache[ridx+ " " + cidx] == true) return
+
         updateSquare(Number(ridx), Number(cidx), WALL_COLOR)
+        cache[ridx + " " + cidx] = true
+
     }
 
     const moveColor = (e) => {
@@ -88,6 +95,9 @@ const Board = () => {
             onMouseUp={onMouseUp}
             onMouseMove={onMouseMove}
             onClick={onClick}
+            onTouchMove={onMouseMove}
+            onTouchStart={onMouseDown}
+            onTouchEnd={onMouseUp}
         >
             {BOARD.map((row, i) => (
                 <div className="board-row" key={i}>
