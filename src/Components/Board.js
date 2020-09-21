@@ -3,11 +3,11 @@ import { Context } from '../Provider'
 import { BOARD, INITIAL_COLOR, WALL_COLOR, PATH_COLOR, START_COLOR, TARGET_COLOR } from '../constants'
 import Square from './Square'
 
-import './Board.css'
+import './Board.scss'
 
 const Board = () => {
     const context = useContext(Context)
-    const { updateSquare, dragSquare, begin, end } = context
+    const { updateSquare, dragSquare, setIsVisualized, begin, end } = context
 
     //states
     const [clicking, setClicking] = useState(false)
@@ -15,6 +15,8 @@ const Board = () => {
     const [dragState, setDragState] = useState()
 
     const onMouseDown = (e) => {
+        if(setIsVisualized == true) return
+
         if(e.target.dataset.state == START_COLOR || e.target.dataset.state == TARGET_COLOR) {
             setDragState(e.target.dataset.state)
             setDragging(true)
@@ -40,6 +42,8 @@ const Board = () => {
     }
 
     const onClick = (e) => {
+        if(setIsVisualized == true) return
+
         changeColor(e)
     }
 

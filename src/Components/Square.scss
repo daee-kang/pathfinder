@@ -1,6 +1,8 @@
+$item-size: calc(80vh / 20);
+
 .square {
-    width: 30px;
-    height: 30px;
+    width: $item-size;
+    height: $item-size;
     margin: 1px;
     border-radius: 2px;
     cursor: pointer;
@@ -11,4 +13,13 @@
     -moz-user-drag: none;
     -o-user-drag: none;
     user-drag: none;
+}
+
+@media only screen and (max-width: 750px) {
+    $item-size: calc(80vw / 20);
+
+    .square {
+        width: $item-size;
+        height: $item-size;
+    }
 }

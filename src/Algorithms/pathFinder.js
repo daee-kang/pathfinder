@@ -49,8 +49,7 @@ export default class PathFinder {
             timeout += TIMEOUT
         } 
 
-        console.log(path)
-        console.log(this.prev)
+        
     }
 
     //use these for traversing neighbors in algos
