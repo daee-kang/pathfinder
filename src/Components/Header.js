@@ -24,10 +24,9 @@ const Header = () => {
         if(isVisualized) return
 
         setIsVisualized(true)
-
+        
         pathFinder.current = new Dijkstra(begin.current, end.current, updateSquare, board.current)
         pathFinder.current.execute()
-        console.log('SAY HI TO MY MOM')
 
         setIsVisualized(false)
     }
@@ -35,10 +34,10 @@ const Header = () => {
     const drawMaze = () => {
         if(isVisualized) return
 
-        PathFinder.drawMaze(begin.current.x, begin.current.y, updateSquare)
+        pathFinder.current = new Dijkstra(begin.current, end.current, updateSquare, board.current)
+        pathFinder.current.drawMaze()
     }
 
-    
     return (
         <div className="header">
             <h1 className="title">path finder</h1>

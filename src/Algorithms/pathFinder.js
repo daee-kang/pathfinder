@@ -1,4 +1,4 @@
-import { COL, INITIAL_COLOR, PATH_COLOR, ROW, TIMEOUT, VISITED_COLOR, WALL_COLOR } from "../constants";
+import { COL, INITIAL_COLOR, PATH_COLOR, ROW, TARGET_COLOR, TIMEOUT, VISITED_COLOR, WALL_COLOR } from "../constants";
 
 export default class PathFinder {
 
@@ -46,9 +46,12 @@ export default class PathFinder {
         }
     }
 
+    drawMaze = () => {
+        this.updateSquare(this.end.x, this.end.y, TARGET_COLOR)
 
+        let bx = this.begin.x
+        let by = this.begin.y
 
-    static drawMaze = (bx, by, updateSquare) => {
         let shuffle = (a) => {
             for (let i = a.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -61,35 +64,35 @@ export default class PathFinder {
             let directions = [0, 1, 2, 3]
             shuffle(directions)
 
-            updateSquare(x, y, WALL_COLOR)
+            this.updateSquare(x, y, WALL_COLOR)
             for(let i = 0; i < directions.length; i++) {
                 //get new cell
 
                 console.log(directions[i])
-                const nx = x + (this.xNext[directions[i]] * 2)
-                const ny = y + (this.yNext[directions[i]] * 2)
+                const nx = x + (PathFinder.xNext[directions[i]] * 2)
+                const ny = y + (PathFinder.yNext[directions[i]] * 2)
 
                 if(nx >= 0 && nx < COL 
                     && ny >= 0 && ny < ROW) {
                         if(grid[nx][ny] == 0) {
                             //set traveled 
-
+                            if(this.board[nx][ny] == TARGET_COLOR) continue;
                             //update between
-                            updateSquare(
-                                x + this.xNext[directions[i]],
-                                y + this.yNext[directions[i]],
+                            this.updateSquare(
+                                x + PathFinder.xNext[directions[i]],
+                                y + PathFinder.yNext[directions[i]],
                                 INITIAL_COLOR,
                                 timeout
                             )
                             timeout += 20
 
                             //update current
-                            updateSquare(x, y, INITIAL_COLOR, timeout)
+                            this.updateSquare(x, y, INITIAL_COLOR, timeout)
                             timeout += 20
                             grid[nx][ny] = 1
                             carvePassage(nx, ny)
                         }
-                        updateSquare(x, y, INITIAL_COLOR, timeout)
+                        this.updateSquare(x, y, INITIAL_COLOR, timeout)
                         timeout += 20
                     }
             }
@@ -101,7 +104,8 @@ export default class PathFinder {
 
         for(let i = 0; i < grid.length; i++){
             for(let j = 0; j < grid.length; j++) {
-                updateSquare(i, j, WALL_COLOR)
+                if(this.board[i][j] == TARGET_COLOR) continue;
+                this.updateSquare(i, j, WALL_COLOR)
             }
         }
     

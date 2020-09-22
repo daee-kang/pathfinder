@@ -8,7 +8,6 @@ export default class Dijkstra extends PathFinder {
 
     execute = () => {
         let timeout = TIMEOUT;
-        let found = false
 
         //using poor mans queue here :-p
         let q1 = []
