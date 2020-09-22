@@ -1,4 +1,4 @@
-$item-size: calc(70vh / 20);
+$item-size: calc(70vh / 31);
 
 .square {
     width: $item-size;
@@ -16,7 +16,7 @@ $item-size: calc(70vh / 20);
 }
 
 @media only screen and (max-width: 750px) {
-    $item-size: calc(80vw / 20);
+    $item-size: calc(80vw / 31);
 
     .square {
         width: $item-size;

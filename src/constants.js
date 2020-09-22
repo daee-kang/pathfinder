@@ -8,9 +8,10 @@ export const START_COLOR    = "#1aa6b7"
 
 //board
 export const BOARD = []
-export const COL = 20
-export const ROW = 20
-export const TIMEOUT = 50
+export const COL = 31
+export const ROW = 31
+export const TIMEOUT = 20
+export const MAZETIMEOUT = 5
 
 for (let i = 0; i < COL; i++) {
     BOARD[i] = [];

@@ -1,4 +1,4 @@
-import { COL, INITIAL_COLOR, PATH_COLOR, ROW, TARGET_COLOR, TIMEOUT, VISITED_COLOR, WALL_COLOR } from "../constants";
+import { COL, INITIAL_COLOR, PATH_COLOR, ROW, TARGET_COLOR, TIMEOUT, VISITED_COLOR, WALL_COLOR, MAZETIMEOUT } from "../constants";
 
 export default class PathFinder {
 
@@ -47,8 +47,6 @@ export default class PathFinder {
     }
 
     drawMaze = () => {
-        this.updateSquare(this.end.x, this.end.y, TARGET_COLOR)
-
         let bx = this.begin.x
         let by = this.begin.y
 
@@ -76,7 +74,6 @@ export default class PathFinder {
                     && ny >= 0 && ny < ROW) {
                         if(grid[nx][ny] == 0) {
                             //set traveled 
-                            if(this.board[nx][ny] == TARGET_COLOR) continue;
                             //update between
                             this.updateSquare(
                                 x + PathFinder.xNext[directions[i]],
@@ -84,16 +81,16 @@ export default class PathFinder {
                                 INITIAL_COLOR,
                                 timeout
                             )
-                            timeout += 20
+                            timeout += MAZETIMEOUT
 
                             //update current
                             this.updateSquare(x, y, INITIAL_COLOR, timeout)
-                            timeout += 20
+                            timeout += MAZETIMEOUT
                             grid[nx][ny] = 1
                             carvePassage(nx, ny)
                         }
                         this.updateSquare(x, y, INITIAL_COLOR, timeout)
-                        timeout += 20
+                        timeout += MAZETIMEOUT
                     }
             }
         }
@@ -110,6 +107,8 @@ export default class PathFinder {
         }
     
         carvePassage(bx, by)
+        this.updateSquare(this.end.x, this.end.y, TARGET_COLOR, timeout)
+        
     }
 
     //use these for traversing neighbors in algos
