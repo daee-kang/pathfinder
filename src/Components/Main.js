@@ -1,7 +1,7 @@
 import React from "react"
 import Board from "./Board"
 import Header from "./Header"
-import './Main.scss'
+import './Styles/Main.scss'
 
 const Main = () => {
     return (

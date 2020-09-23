@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Context } from '../Provider'
-import './Square.scss'
+import './Styles/Square.scss'
 
 import {
     INITIAL_COLOR,

@@ -3,7 +3,7 @@ import { Context } from '../Provider'
 import { BOARD, INITIAL_COLOR, WALL_COLOR, PATH_COLOR, START_COLOR, TARGET_COLOR } from '../constants'
 import Square from './Square'
 
-import './Board.scss'
+import './Styles/Board.scss'
 
 const Board = () => {
     const context = useContext(Context)
