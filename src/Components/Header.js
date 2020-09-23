@@ -5,6 +5,7 @@ import PathFinder from '../Algorithms/pathFinder'
 import './Styles/Header.scss'
 import Dijkstra from '../Algorithms/dijkstra'
 import AStar from '../Algorithms/astar'
+import Bfs from '../Algorithms/bfs'
 
 const Header = () => {
     const context = useContext(Context)
@@ -34,6 +35,9 @@ const Header = () => {
                 break;
             case 'astar':
                 pathFinder.current = new AStar(begin.current, end.current, updateSquare, board.current)
+                break;
+                case 'bfs':
+                pathFinder.current = new Bfs(begin.current, end.current, updateSquare, board.current)
                 break;
 
             default:
