@@ -1,12 +1,9 @@
 import React , { createContext, useState, useRef } from 'react'
-import { BOARD, COL, INITIAL_COLOR, ROW, START_COLOR, TARGET_COLOR } from "./constants"
+import { BOARD, COL, INITIAL_COLOR, ROW, START_COLOR, TARGET_COLOR, WALL_COLOR } from "./constants"
 
 const Context = createContext();
 
 const Provider = ({children}) => {
-    const [isPathExist, setIsPathExist]   = useState(true)
-    const [isVisualized, setIsVisualized] = useState(false)
-    
     /* 
     this holds the state hooks from Square.js
     */
@@ -62,21 +59,24 @@ const Provider = ({children}) => {
                 updateSquare(i, j)
             }
         }
-        setIsVisualized(false)
+    }
+
+    const clearAllButWalls = () => {
+        for(let i = 0; i < COL; i++){
+            for(let j = 0; j < ROW; j++) {
+                if(board.current[i][j] != WALL_COLOR) 
+                    updateSquare(i, j)
+            }
+        }
     }
 
     return (
-        <Context.Provider value = {{
-            //states
-            isPathExist,
-            isVisualized,
-            
+        <Context.Provider value = {{     
             //methods
-            setIsPathExist,
-            setIsVisualized,
             updateSquare,
             dragSquare,
             clearBoard,
+            clearAllButWalls,
 
             //ref
             setCurrStateCache,

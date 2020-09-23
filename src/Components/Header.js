@@ -14,21 +14,14 @@ const Header = () => {
         end,
         updateSquare,
         clearBoard,
-        isPathExist,
-        isVisualized,
-        setIsPathExist,
-        setIsVisualized,
+        clearAllButWalls,
         board,
         pathFinder
     } = context;
 
     const [ selectedAlgo, setSelectedAlgo ] = useState('dijkstra')
 
-    const search = () => {
-        if(isVisualized) return
-
-        setIsVisualized(true)
-        
+    const search = () => {       
         switch(selectedAlgo) {
             case 'dijkstra':
                 pathFinder.current = new Dijkstra(begin.current, end.current, updateSquare, board.current)
@@ -41,24 +34,38 @@ const Header = () => {
                 break;
 
             default:
-                setIsVisualized(false)
                 return
         }
         
         pathFinder.current.execute()
-        setIsVisualized(false)
     }
 
     const drawMaze = () => {
-        if(isVisualized) return
-
+        stopAnimations()
         pathFinder.current = new PathFinder(begin.current, end.current, updateSquare, board.current)
         pathFinder.current.drawMaze()
+    }
+
+    const handleClearBoard = () => {
+        stopAnimations()
+        clearAllButWalls()
+    }
+
+    const handleClearAll = () => {
+        stopAnimations()
+        clearBoard()
     }
 
     const handleChange = e => {
         console.log(e.target.value)
         setSelectedAlgo(e.target.value)
+    }
+
+    const stopAnimations = () => {
+        let temp = setTimeout("~");
+        for(let i = 0; i < temp; i++){
+            clearTimeout(i)
+        }
     }
 
     return (
@@ -72,7 +79,8 @@ const Header = () => {
                     <option value="bfs">bfs</option>
                 </select>
                 <button onClick={search}>search</button>
-                <button onClick={clearBoard}>clear</button>
+                <button onClick={handleClearBoard}>clear</button>
+                <button onClick={handleClearAll}>clear all</button>
                 <button onClick={drawMaze}>draw maze</button>
             </div>
         </div>

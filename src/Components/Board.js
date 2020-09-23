@@ -7,7 +7,7 @@ import './Styles/Board.scss'
 
 const Board = () => {
     const context = useContext(Context)
-    const { updateSquare, dragSquare, setIsVisualized, begin, end } = context
+    const { updateSquare, dragSquare, begin, end } = context
 
     let cache = {}
     
@@ -17,8 +17,6 @@ const Board = () => {
     const [dragState, setDragState] = useState()
 
     const onMouseDown = (e) => {
-        if(setIsVisualized == true) return
-
         if(e.target.dataset.state == START_COLOR || e.target.dataset.state == TARGET_COLOR) {
             setDragState(e.target.dataset.state)
             setDragging(true)
@@ -43,8 +41,6 @@ const Board = () => {
     }
 
     const onClick = (e) => {
-        if(setIsVisualized == true) return
-
         toggleColor(e)
     }
 
