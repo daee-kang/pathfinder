@@ -113,6 +113,7 @@ const Board = () => {
                     ))}
                 </div>
             ))}
+            <a href="https://github.com/daee-kang/pathfinder" id="github">https://github.com/daee-kang/pathfinder</a>
         </div>
     )
 }
