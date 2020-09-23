@@ -45,10 +45,11 @@ export default class Dijkstra extends PathFinder {
                         return
                     }
                     this.updateSquare(newx, newy, VISITED_COLOR, timeout)
+                    timeout += TIMEOUT
                     q2.push({x: newx, y: newy})
                 }
             }
-            timeout += TIMEOUT
+
 
             q1 = q2
             q2 = []
