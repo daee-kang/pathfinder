@@ -2,8 +2,8 @@ import { COL, ROW, TIMEOUT, VISITED_COLOR, WALL_COLOR } from "../constants";
 import PathFinder from "./pathFinder";
 
 export default class Dijkstra extends PathFinder {
-    constructor(begin, end, updateSquare, board) {
-        super(begin, end, updateSquare, board)
+    constructor(begin, end, updateSquare, board, setIsDrawing) {
+        super(begin, end, updateSquare, board, setIsDrawing)
     }
 
     execute = () => {
@@ -54,5 +54,6 @@ export default class Dijkstra extends PathFinder {
             q1 = q2
             q2 = []
         }
+        setTimeout(this.setIsDrawing(false), timeout)
     }
 }

@@ -7,7 +7,7 @@ import './Styles/Board.scss'
 
 const Board = () => {
     const context = useContext(Context)
-    const { updateSquare, dragSquare, begin, end } = context
+    const { updateSquare, dragSquare, isDrawing, begin, end } = context
 
     let cache = {}
     
@@ -17,6 +17,8 @@ const Board = () => {
     const [dragState, setDragState] = useState()
 
     const onMouseDown = (e) => {
+        if(isDrawing == true) return;
+
         if(e.target.dataset.state == START_COLOR || e.target.dataset.state == TARGET_COLOR) {
             setDragState(e.target.dataset.state)
             setDragging(true)
@@ -26,6 +28,7 @@ const Board = () => {
     }
 
     const onMouseUp = (e) => {
+        if(isDrawing == true) return;
         cache = {}
 
         setDragging(false)
@@ -33,6 +36,7 @@ const Board = () => {
     }
 
     const onMouseMove = (e) => {
+        if(isDrawing == true) return;
         if(clicking) {
             changeColor(e)
         } else if (dragging) {
@@ -41,10 +45,13 @@ const Board = () => {
     }
 
     const onClick = (e) => {
+        if(isDrawing == true) return;
         toggleColor(e)
     }
 
     const toggleColor = (e) => {
+        if(isDrawing == true) return;
+
         let ridx = e.target.dataset.ridx
         let cidx = e.target.dataset.cidx
         
@@ -61,6 +68,8 @@ const Board = () => {
     }
 
     const changeColor = (e) => {
+        if(isDrawing == true) return;
+
         let ridx = e.target.dataset.ridx
         let cidx = e.target.dataset.cidx
         
@@ -75,6 +84,8 @@ const Board = () => {
     }
 
     const moveColor = (e) => {
+        if(isDrawing == true) return;
+        
         let ridx = e.target.dataset.ridx
         let cidx = e.target.dataset.cidx
         

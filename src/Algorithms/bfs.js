@@ -3,8 +3,8 @@ import PriorityQueue from 'js-priority-queue'
 import { COL, ROW, TIMEOUT, VISITED_COLOR, WALL_COLOR } from "../constants";
 
 export default class Bfs extends PathFinder {
-    constructor(begin, end, updateSquare, board) {
-        super(begin, end, updateSquare, board)
+    constructor(begin, end, updateSquare, board, setIsDrawing) {
+        super(begin, end, updateSquare, board, setIsDrawing)
 
         this.visited = []
         for (let i = 0; i < ROW; i++) {
@@ -58,5 +58,6 @@ export default class Bfs extends PathFinder {
             q1 = q2
             q2 = []
         }
+        setTimeout(this.setIsDrawing(false), timeout)
     }
 }

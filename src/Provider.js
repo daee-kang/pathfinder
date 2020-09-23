@@ -4,6 +4,8 @@ import { BOARD, COL, INITIAL_COLOR, ROW, START_COLOR, TARGET_COLOR, WALL_COLOR }
 const Context = createContext();
 
 const Provider = ({children}) => {
+    const [isDrawing, setIsDrawing] = useState(false)
+
     /* 
     this holds the state hooks from Square.js
     */
@@ -31,6 +33,7 @@ const Provider = ({children}) => {
     }
 
     const dragSquare = (ridx, cidx, toState) => {
+        if(board.current[ridx][cidx] == WALL_COLOR) return
 
         if( toState == START_COLOR ) {
             if( ridx == begin.current.x && cidx == begin.current.y ) return
@@ -71,12 +74,15 @@ const Provider = ({children}) => {
     }
 
     return (
-        <Context.Provider value = {{     
+        <Context.Provider value = {{
+            isDrawing,
+            
             //methods
             updateSquare,
             dragSquare,
             clearBoard,
             clearAllButWalls,
+            setIsDrawing,
 
             //ref
             setCurrStateCache,

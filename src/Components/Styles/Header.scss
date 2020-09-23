@@ -16,9 +16,13 @@ $width: (100/$menu-items) * 1%;
 }
 
 button {
+  background-color: white;
   font-family: inherit;
   font-size: 1em;
   margin: 10px 5px;
+  border-style: solid;
+  border-radius: 3px;
+
   &:hover {
     border-color:#1aa6b7;
     border-style: solid;

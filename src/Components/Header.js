@@ -16,21 +16,25 @@ const Header = () => {
         clearBoard,
         clearAllButWalls,
         board,
-        pathFinder
+        pathFinder,
+        isDrawing,
+        setIsDrawing
     } = context;
 
     const [ selectedAlgo, setSelectedAlgo ] = useState('dijkstra')
 
-    const search = () => {       
+    const search = () => {  
+        setIsDrawing(true)
+        
         switch(selectedAlgo) {
             case 'dijkstra':
-                pathFinder.current = new Dijkstra(begin.current, end.current, updateSquare, board.current)
+                pathFinder.current = new Dijkstra(begin.current, end.current, updateSquare, board.current, setIsDrawing)
                 break;
             case 'astar':
-                pathFinder.current = new AStar(begin.current, end.current, updateSquare, board.current)
+                pathFinder.current = new AStar(begin.current, end.current, updateSquare, board.current, setIsDrawing)
                 break;
                 case 'bfs':
-                pathFinder.current = new Bfs(begin.current, end.current, updateSquare, board.current)
+                pathFinder.current = new Bfs(begin.current, end.current, updateSquare, board.current, setIsDrawing)
                 break;
 
             default:
@@ -42,7 +46,7 @@ const Header = () => {
 
     const drawMaze = () => {
         stopAnimations()
-        pathFinder.current = new PathFinder(begin.current, end.current, updateSquare, board.current)
+        pathFinder.current = new PathFinder(begin.current, end.current, updateSquare, board.current, setIsDrawing)
         pathFinder.current.drawMaze()
     }
 
@@ -62,6 +66,7 @@ const Header = () => {
     }
 
     const stopAnimations = () => {
+        setIsDrawing(false)
         let temp = setTimeout("~");
         for(let i = 0; i < temp; i++){
             clearTimeout(i)

@@ -2,11 +2,12 @@ import { COL, INITIAL_COLOR, PATH_COLOR, ROW, TARGET_COLOR, TIMEOUT, VISITED_COL
 
 export default class PathFinder {
 
-    constructor(begin, end, updateSquare, board) {
+    constructor(begin, end, updateSquare, board, setIsDrawing) {
         this.begin = begin
         this.end = end
         this.updateSquare = updateSquare
         this.board = board;
+        this.setIsDrawing = setIsDrawing
 
         //initialize dist and prev graphs
         this.dist = []
@@ -44,6 +45,8 @@ export default class PathFinder {
             this.updateSquare(path[i].x, path[i].y, PATH_COLOR, timeout)
             timeout += TIMEOUT
         }
+
+        setTimeout(this.setIsDrawing(false), timeout)
     }
 
     drawMaze = () => {

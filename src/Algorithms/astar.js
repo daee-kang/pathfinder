@@ -8,8 +8,8 @@ import PriorityQueue from 'js-priority-queue'
     we will use dist as container for f(x) here
 */
 export default class AStar extends PathFinder {
-    constructor(begin, end, updateSquare, board) {
-        super(begin, end, updateSquare, board)
+    constructor(begin, end, updateSquare, board, setIsDrawing) {
+        super(begin, end, updateSquare, board, setIsDrawing)
 
         this.open = new PriorityQueue({ comparator: (a, b) => {
             return a.f - b.f
@@ -78,5 +78,6 @@ export default class AStar extends PathFinder {
                 }
             }      
         }
+        setTimeout(this.setIsDrawing(false), timeout)
     }
 }
