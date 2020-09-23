@@ -76,7 +76,7 @@ const Header = () => {
     return (
         <div className="header">
             <h1 className="title">path finder</h1>
-            <h2 className="subtitle">by daee kang</h2>
+            <h2 className="subtitle">by daee kang 🤠</h2>
             <div>
                 <select name="algos" value={selectedAlgo} onChange={handleChange}>
                     <option value="dijkstra">dijkstra's</option>
